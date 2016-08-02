@@ -7,7 +7,7 @@ using ROSO.Model;
 
 namespace ROSO.BLL
 {
-    class BL_GetRSJList:BL_DeviceList
+    public class BL_GetRSJList:BL_DeviceList
     {
         /// <summary>
         /// 错误信息列表
@@ -399,9 +399,9 @@ namespace ROSO.BLL
                 listRG[i].BSD = (short)ReadData.GetData(resultData, dvtRGBSD.Address, dvtRGBSD.Length + i * 2);
                 listRG[i].WD = (short)ReadData.GetData(resultData, dvtRGWD.Address, dvtRGWD.Length + i * 2);
                 listRG[i].YL = (short)ReadData.GetData(resultData, dvtRGYL.Address, dvtRGYL.Length + i * 2);
-                listRG[i].KZZ1 = ReadData.GetStringData(resultData, dvtRGKZZ1.Address, dvtRGKZZ1.Length + i * 2);
-                listRG[i].KZZ2 = ReadData.GetStringData(resultData, dvtRGKZZ2.Address, dvtRGKZZ1.Length + i * 2);
-                listRG[i].KZZ3 = ReadData.GetStringData(resultData, dvtRGKZZ3.Address, dvtRGKZZ1.Length + i * 2);
+                listRG[i].KZZ1 = ReadData.GetStringData(resultData, dvtRGKZZ1.Address + i * 2, dvtRGKZZ1.Length + i * 2, 2);
+                listRG[i].KZZ2 = ReadData.GetStringData(resultData, dvtRGKZZ2.Address + i * 2, dvtRGKZZ1.Length + i * 2, 2);
+                listRG[i].KZZ3 = ReadData.GetStringData(resultData, dvtRGKZZ3.Address + i * 2, dvtRGKZZ1.Length + i * 2, 2);
                 listRG[i].JTBH = ReadData.GetData(resultData, dvtRGJTBH.Address, dvtRGJTBH.Length + i * 2);
                }
 
@@ -473,21 +473,21 @@ namespace ROSO.BLL
         {
             foreach (RG rg in rsj.RGS)
             {
-                if (rg.KZZ1[10] == '1')
+                if (rg.KZZ1[9] == '1')
                     rg.SBYXZT = 11;
-                if (rg.KZZ2[12] == '1')
+                if (rg.KZZ2[11] == '1')
                     rg.SBYXZT = 12;
-                else if (rg.KZZ2[13] == '1')
+                else if (rg.KZZ2[12] == '1')
                     rg.SBYXZT = 13;
-                else if (rg.KZZ2[15] == '1')
+                else if (rg.KZZ2[14] == '1')
                     rg.SBYXZT = 14;
-                else if (rg.KZZ2[16] == '1')
+                else if (rg.KZZ2[15] == '1')
                     rg.SBYXZT = 15;
-                if (rg.KZZ3[6] == '1')
+                if (rg.KZZ3[5] == '1')
                     rg.SBYXZT = 16;
-                else if (rg.KZZ3[7] == '1')
+                else if (rg.KZZ3[6] == '1')
                     rg.SBYXZT = 17;
-                else if (rg.KZZ3[8] == '1')
+                else if (rg.KZZ3[7] == '1')
                     rg.SBYXZT = 18;
             }
             return rsj;

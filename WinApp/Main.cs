@@ -109,10 +109,47 @@ namespace ROSO.WinApp
 
         private void button5_Click(object sender, EventArgs e)
         {
-            List<DeviceInfo> devicelist = BL_DeviceInfo.GetDeviceInfoList(DeviceType.ROSO_RDJ);
-            List<RDJ> list= BL_GetRDJList.GetRDJList(devicelist, 502, 10000, 200, BL_DeviceTemplate.GetDeviceTemplateList(DeviceType.ROSO_RDJ));
+            List<DeviceInfo> devicelist = BL_DeviceInfo.GetDeviceInfoList(DeviceType.ROSO_RSJ);
+            List<RSJ> list= BL_GetRSJList.GetRSJList(devicelist, 502, 10000, 200, BL_DeviceTemplate.GetDeviceTemplateList(DeviceType.ROSO_RSJ));
 
+            foreach (RSJ rsj in list)
+            {
+                if (rsj.SBZDXX == "网络错误")
+                {
+                    continue;
+                }
+                Console.WriteLine("CZRBH: " + rsj.CZRBH);
+                if (rsj.PLCZT != null)
+                {
+                    for (int i = 0; i < rsj.PLCZT.Length; i++)
+                    {
+                        Console.WriteLine("PLCZT: " + rsj.PLCZT[i]);
+                    }
 
+                }
+                Console.WriteLine("RGSL：" + rsj.RGSL);
+                Console.WriteLine("SBBH: " + rsj.SBBH);
+                Console.WriteLine("SBGG: " + rsj.SBGG);
+                Console.WriteLine("SBXH: " + rsj.SBXH);
+                Console.WriteLine("SBZDXX: " + rsj.SBZDXX);
+                foreach (RG rg in rsj.RGS)
+                {
+                    Console.WriteLine("BSD: " + rg.BSD);
+                    Console.WriteLine("GYBH: " + rg.GYBH);
+                    Console.WriteLine("GYDH: " + rg.GYDH);
+                    Console.WriteLine("GYMC: " + rg.GYMC);
+                    Console.WriteLine("JTBH: " + rg.JTBH);
+                    Console.WriteLine("KZZ1: " + rg.KZZ1);
+                    Console.WriteLine("KZZ2: " + rg.KZZ2);
+                    Console.WriteLine("KZZ3: " + rg.KZZ3);
+                    Console.WriteLine("RGBH：" + rg.RGBH);
+                    Console.WriteLine("SBYXZT：" + rg.SBYXZT);
+                    Console.WriteLine("SBZDXX：" + rg.SBZDXX);
+                    Console.WriteLine("WD：" + rg.WD);
+                    Console.WriteLine("YL：" + rg.YL);
+                    Console.WriteLine("YXSJ： " + rg.YXSJ);
+                }
+            }
         }
 
  
