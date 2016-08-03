@@ -407,8 +407,8 @@ namespace ROSO.BLL
 
             rsj.RGS = listRG;
             #endregion
-            
-            return rsj.
+
+            return rsj;
         }
 
         /// <summary>
