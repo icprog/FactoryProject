@@ -21,7 +21,7 @@ namespace ROSO.WinApp
         private void button1_Click(object sender, EventArgs e)
         {
             List<DeviceInfo> devicelist = BL_DeviceInfo.GetDeviceInfoList(DeviceType.ROSO_RDJ);
-            List<RSJ> list = BL_GetRSJList.GetRSJList(devicelist, 502, 10000, 200, BL_DeviceTemplate.GetDeviceTemplateList(DeviceType.ROSO_RDJ));
+            List<RDJ> list = BL_GetRDJList.GetRDJList(devicelist, 502, 10000, 200, BL_DeviceTemplate.GetDeviceTemplateList(DeviceType.ROSO_RDJ));
         }
     }
 }
