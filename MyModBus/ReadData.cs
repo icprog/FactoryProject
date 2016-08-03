@@ -20,7 +20,7 @@ namespace MyModBus
             byte[] dt = new byte[length];
             int getData;
             Array.Copy(data, start, dt, 0, length);
-            
+            Array.Reverse(dt);
             for (int i = 0; i < dt.Length; i++)
             {
                 Console.WriteLine(dt[i]);
@@ -38,7 +38,15 @@ namespace MyModBus
                     getData = BitConverter.ToInt16(dt, 0);
                 }
                 else
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        byte temp = dt[i];
+                        dt[i] = dt[i + 2];
+                        dt[i + 2] = temp;
+                    }
                     getData = BitConverter.ToInt32(dt, 0);
+                }
                 return getData;
             }
 
