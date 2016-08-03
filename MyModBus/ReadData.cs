@@ -20,7 +20,11 @@ namespace MyModBus
             byte[] dt = new byte[length];
             int getData;
             Array.Copy(data, start, dt, 0, length);
-            Array.Reverse(dt);
+            
+            for (int i = 0; i < dt.Length; i++)
+            {
+                Console.WriteLine(dt[i]);
+            }
             if (length == 1)
             {
                 getData = Convert.ToInt16(dt);

@@ -160,8 +160,8 @@ namespace ROSO.BLL
                     case "设备型号":
                         rsj.SBXH = (short)ReadData.GetData(resultData, deviceTamplate.Address, deviceTamplate.Length);
                         break;
-                    case "设备诊断信息":                       
-                        rsj.PLCZT = ReadData.GetIntArrayData(resultData, deviceTamplate.Address + 10, deviceTamplate.Length - 20, 1);
+                    case "设备诊断信息":
+                        rsj.PLCZT = ReadData.GetIntArrayData(resultData, deviceTamplate.Address + 20, deviceTamplate.Length - 20, 1);
                          break;
                     case "设备规格":
                         rsj.SBGG = (short)ReadData.GetData(resultData, deviceTamplate.Address, deviceTamplate.Length);
@@ -383,13 +383,13 @@ namespace ROSO.BLL
             DeviceTemplate dvtRGKZZ2 = BL_DeviceTemplate.GetDeviceTemplate(deviceTemplateList, "控制字21");
             DeviceTemplate dvtRGKZZ3 = BL_DeviceTemplate.GetDeviceTemplate(deviceTemplateList, "控制字31");
             DeviceTemplate dvtRGJTBH = BL_DeviceTemplate.GetDeviceTemplate(deviceTemplateList, "卷筒编号1");
-           
-            
+
+
 
             for (int i = 0; i < listRG.Count; i++)
             {
-                listRG[i].SBYXZT = (short)ReadData.GetData(resultData, dvtRGYXZT.Address, dvtRGYXZT.Length + i*2);
-                listRG[i].SBZDXX = ReadData.GetStringData(resultData, dvtRGZDXX.Address, dvtRGZDXX.Length + i * 4,2);
+                listRG[i].SBYXZT = (short)ReadData.GetData(resultData, dvtRGYXZT.Address, dvtRGYXZT.Length + i * 2);
+                listRG[i].SBZDXX = ReadData.GetStringData(resultData, dvtRGZDXX.Address + i * 2, 4, 2);
 
                 listRG[i].YXSJ = (short)ReadData.GetData(resultData, dvtRGYXSJ.Address, dvtRGYXSJ.Length + i * 2);
                 //染色机诊断信息
@@ -399,11 +399,11 @@ namespace ROSO.BLL
                 listRG[i].BSD = (short)ReadData.GetData(resultData, dvtRGBSD.Address, dvtRGBSD.Length + i * 2);
                 listRG[i].WD = (short)ReadData.GetData(resultData, dvtRGWD.Address, dvtRGWD.Length + i * 2);
                 listRG[i].YL = (short)ReadData.GetData(resultData, dvtRGYL.Address, dvtRGYL.Length + i * 2);
-                listRG[i].KZZ1 = ReadData.GetStringData(resultData, dvtRGKZZ1.Address + i * 2, dvtRGKZZ1.Length + i * 2, 2);
-                listRG[i].KZZ2 = ReadData.GetStringData(resultData, dvtRGKZZ2.Address + i * 2, dvtRGKZZ1.Length + i * 2, 2);
-                listRG[i].KZZ3 = ReadData.GetStringData(resultData, dvtRGKZZ3.Address + i * 2, dvtRGKZZ1.Length + i * 2, 2);
-                listRG[i].JTBH = ReadData.GetData(resultData, dvtRGJTBH.Address, dvtRGJTBH.Length + i * 2);
-               }
+                listRG[i].KZZ1 = ReadData.GetStringData(resultData, dvtRGKZZ1.Address + i * 2, 2, 2);
+                listRG[i].KZZ2 = ReadData.GetStringData(resultData, dvtRGKZZ2.Address + i * 2, 2, 2);
+                listRG[i].KZZ3 = ReadData.GetStringData(resultData, dvtRGKZZ3.Address + i * 2, 2, 2);
+                listRG[i].JTBH = ReadData.GetData(resultData, dvtRGJTBH.Address + i * 2, 4);
+            }
 
             rsj.RGS = listRG;
             #endregion
